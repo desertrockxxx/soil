@@ -1,0 +1,17 @@
+/*Fonts*/
+@font-face {
+  font-family: 'Babylove';
+  src: url('Babylove.ttf') format('truetype');
+  
+}
+@font-face {
+  font-family: 'Digitalt';
+  src: url('Digitalt.ttf') format('truetype');
+  
+}
+
+h2, h1, label{
+  font-family: Digitalt, arial, sans-serif;
+  
+}
+
