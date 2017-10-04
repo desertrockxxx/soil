@@ -8,11 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  <link rel="stylesheet" href="style.css" type="text/css" />
-  
-  <!--Font Awesome-->
-  <script src="https://use.fontawesome.com/60a7bf25ad.js"></script>
+  <link rel="stylesheet" href="/css/style.css" type="text/css" />
 </head>
 <body>
 
@@ -20,225 +16,228 @@
   <h1>Selling modul</h1>
   <p>This is a responsive selling modul for terratectum.de!</p> 
 </div>
+
+<!--test-->
+<div class="row text-center submitajax">
+  <button id="test">Test</button>
+</div>
+  
   
 <div class="container">
-
-    <div class="choicerow row text-center">
-        
-    <h2 class="text-center">Select breed</h2>
-        <img id="Pear" value="Pear" src="pear.svg">
-        <img id="Strawberry" src="strawberry.svg">
-        <img id="Mango" src="mango.svg">
-        <img id="Orange" src="orange.svg">
-        <img id="Grape" src="grape.svg">
-        <img id="Apple" src="apple.svg">
-        <img id="Watermelon" src="watermelon.svg">
-        
+    <!--if auswahl(x) then frucht = x -->
+    <!--Auswahl  --> 
+    <div class="choicerow row ">
+    <h2 id="imgselect" class="text-center">Select breed</h2>
+        <img id="Pear" value="Pear" src="/img/pear.svg">
+        <img id="Strawberry" src="/img/strawberry.svg">
+        <img id="Mango" src="/img/mango.svg">
+        <img id="Orange" src="/img/orange.svg">
+        <img id="Grape" src="/img/grape.svg">
+        <img id="Apple" src="/img/apple.svg">
+        <img id="Watermelon" src="/img/watermelon.svg">
     </div>
-
+    <!--Auswahl Ende-->
 
     <div class="conditionsrow row text-center" style="height:760px">
 
     <!---SACK OPTION-->
-    <div class="col-sm-4" id="sack" style="display:none">
-      <h2>Sack</h2>
-      <form method="get" action="test.php">
-          
-        <img class="img-responsive" src="bagnew.svg" width="4500px" alt="bag">
-          
-        <input class='hidden' type='text' value='sack' name='condition'/>
-        <input type='text' class='fruit hidden' id='fruit1' name='fruit'/>   
+    <div class="col-sm-4 text-center" id="sack" style="display:none">
+      <h2>Bag</h2>
+        <img class="img-responsive" width="100px" src="/img/bagnew.svg" width="4500px" alt="bag">
           
         <div class="form-group">
-          <label for="size">Select Size:</label>
-          <select class="form-control" id="size" name="bagSize">
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
+          <label for="size">Size of Bag:</label>
+          <select class="form-control" onchange="getSize(this);" id="bagSize">
+            <option>S (2 litre)</option>
+            <option>M (5 litre)</option>
+            <option>L (10 litre)</option>
+            <option>XL (25 litre)</option>
           </select>
         </div>
+        
         <div class="form-group">
-          <label for="quantity">Quantity:</label>
-          <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity">
+          <label for="quantity">How many?</label>
+          <input type="number" class="form-control" onchange="getQuantity(this);" id="quantity" placeholder="Enter quantity">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
     </div>
+    <!---SACK OPTION ENDE-->
     
     <!---TOPF OPTION-->
-    <div class="col-sm-4" id="topf" style="display:none">
-      <h2>Topf</h2>
-      <form method="get" action="test.php">
-          
-        <img class="img-responsive" src="potnew.svg" alt="pot">  
-          
-        <input class='hidden' type='text' value='topf' name='condition'/>
-        <input type='text' class='fruit hidden' id='fruit2' name='fruit'/>   
+    <div class="col-sm-4 text-center" id="topf" style="display:none">
+      <h2>Pot</h2>
+        <img class="img-responsive" width="100px" src="/img/potnew.svg" alt="pot">  
 
         <div class="form-group">
-          <label for="size">Select Size:</label>
-          <select class="form-control" id="size" name="potSize">
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
+          <label for="size">Size of Pot:</label>
+          <select class="form-control" onchange="getSize(this);"  id="potSize">
+            <option>S (2 litre)</option>
+            <option>M (5 litre)</option>
+            <option>L (10 litre)</option>
+            <option>XL (25 litre)</option>
           </select>
         </div>
+        
+        <label for="quantity">How many?</label>
         <div class="form-group">
-          <label for="quantity">Quantity:</label>
-          <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity">
+          <input type="number" class="form-control" onchange="getQuantity(this);" id="quantity" placeholder="Enter quantity">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
     </div>
+     <!---TOPF OPTION ENDE-->
     
     <!---LOSE OPTION-->
-    <div class="col-sm-4" id="lose" style="display:none">
-      <h2>Lose</h2>
-      <form method="get" action="test.php">
-          
-        <img class="img-responsive" src="cubenew.svg" alt="cube">
-          
-        <input class='hidden' type='text' value='lose' name='condition'/>
-        <input type='text' class='fruit hidden' id='fruit3' name='fruit'/>  
-
+    <div class="col-sm-4 text-center" id="lose" style="display:none">
+      <h2>Dynamic</h2>
+        <div class="text-center">
+            <img class="img-responsive" width="100px" src="/img/cubenew.svg" alt="cube">
+        </div> 
         <div class="form-group">
             <label for="x">Length:</label>
-            <input type="number" class="form-control" onchange="rechnung();" id="x" min="1" max="100" value="1" name="length"/>
+            <input type="number" class="form-control" onchange="calculateQuantity();" id="x" min="1" max="100" value="1"/>
         </div>
         <div class="form-group">
             <label for="y">Width:</label>
-            <input type="number" class="form-control" onchange="rechnung();" id="y" min="1" max="100" value="1" name="width"/>
+            <input type="number" class="form-control" onchange="calculateQuantity();" id="y" min="1" max="100" value="1"/>
         </div>
         <div class="form-group">
             <label for="z">Height:</label>
-            <input type="number" class="form-control" onchange="rechnung();" id="z" min="1" max="100" value="1" name="height"/>
+            <input type="number" class="form-control" onchange="calculateQuantity();" id="z" min="1" max="100" value="1"/>
         </div>
         <div class="form-group">
-          <label for="quantity">Quantity:</label>
-          <input type="number" class="form-control" id="quantity1" placeholder="Enter quantity" name="quantity">
+          <label for="quantity">How many?</label>
+          <input type="number" class="form-control" id="dimensionsum" placeholder="Enter quantity">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
     </div>
-    
+     <!---LOSE OPTION ENDE-->
   </div>
+  
 </div>
 
 <script type="application/javascript">
-/*global $, val, kondition, fruit*/
+/*global $*/
+var val, con, siz, qua, x, y, z;
 
-// Wenn Bilder geklickt, nehme den id-Namen 
-$("img").click(function() { 
-val = $(this).attr("id");
-
-// Scroll nach unten
-var $target = $('html,body'); 
-$target.animate({scrollTop: $target.height()}, 2500);
-
-var fruit = $("#fruit1").val(val) +
-        $("#fruit2").val(val) +
-        $("#fruit3").val(val); 
-
-switch(val){
-    case "Pear":
-        kondition = 1;
-        fruit;
-        break;
-    case "Strawberry":
-        kondition = 2;
-        fruit;
-        break;
-    case "Mango":
-        kondition = 3;
-        fruit;
-        break;
-    case "Orange":
-        kondition = 4;
-        fruit;
-        break;
-    case "Grape":
-        kondition = 5;
-        fruit;
-        break;
-    case "Apple":
-        kondition = 6;
-        fruit;
-        break;
-    case "Watermelon":
-        kondition = 7;
-        fruit;
-        break;    
+// Dimension
+function calculateQuantity() {
+    x = $("#x").val();
+    y = $("#y").val();
+    z = $("#z").val();
     
-    default:
-        kondition = 0;
-        fruit; 
-        break;
+    parseInt(x);
+    parseInt(y);
+    parseInt(z);
+    
+    var sum = x * y * z;
+    document.getElementById("dimensionsum").value = sum;
+    console.log(sum);
 }
+
+// Größe
+function getSize(sel)
+{
+    siz = sel.value;
+    console.log(siz);
+}
+
+// Menge
+function getQuantity(sel)
+{
+    qua = sel.value;
+    console.log(qua);
+}
+
+$(document).ready(function() {
+
+$("img").click(function() {
+    val = $(this).attr("id"); // fruit 1
+    con; // konditon 2
+        
+    switch(val){
+        case "Pear":
+            con = 1;
+            break;
+        case "Strawberry":
+            con = 2;
+            break;
+        case "Mango":
+            con = 3;
+            break;
+        case "Orange":
+            con = 4;
+            break;
+        case "Grape":
+            con = 5;
+            break;
+        case "Apple":
+            con = 6;
+            break;
+        case "Watermelon":
+            con = 7;
+            break;    
+        
+        default:
+            con = 0;
+            break;
+    }
     
-    switch(kondition){
-    case 1:
-        $("#sack").show();
-        $("#topf").hide();
-        $("#lose").hide();
-        break;
-    case 2:
-        $("#sack").hide();
-        $("#topf").show();
-        $("#lose").hide();
-        break;
-    case 3:
-        $("#sack").hide();
-        $("#topf").hide();
-        $("#lose").show();
-        break;
-    case 4:
-        $("#sack").hide();
-        $("#topf").show();
-        $("#lose").show();
-        break;
-    case 5:
-        $("#sack").show();
-        $("#topf").hide();
-        $("#lose").show();
-        break;
-    case 6:
-        $("#sack").show();
-        $("#topf").show();
-        $("#lose").hide();
-        break;
-    case 7:
-        $("#sack").show();
-        $("#topf").show();
-        $("#lose").show();
-        break;    
-    default:
-        $("#sack").hide();
-        $("#topf").hide();
-        $("#lose").hide();
-        break;
+    switch(con){
+        case 1:
+            $("#sack").show();
+            $("#topf").hide();
+            $("#lose").hide();
+            break;
+        case 2:
+            $("#sack").hide();
+            $("#topf").show();
+            $("#lose").hide();
+            break;
+        case 3:
+            $("#sack").hide();
+            $("#topf").hide();
+            $("#lose").show();
+            break;
+        case 4:
+            $("#sack").hide();
+            $("#topf").show();
+            $("#lose").show();
+            break;
+        case 5:
+            $("#sack").show();
+            $("#topf").hide();
+            $("#lose").show();
+            break;
+        case 6:
+            $("#sack").show();
+            $("#topf").show();
+            $("#lose").hide();
+            break;
+        case 7:
+            $("#sack").show();
+            $("#topf").show();
+            $("#lose").show();
+            break;    
+        default:
+            $("#sack").hide();
+            $("#topf").hide();
+            $("#lose").hide();
+            break;
     }
 });
 
-// Berechnung der Dimension
-function rechnung() {
-    
-var x = document.getElementById("x").value;
-var y = document.getElementById("y").value;
-var z = document.getElementById("z").value;
+
+$("#test").click(function(){
+    $.ajax({
+        type: "GET",
+        url: 'test.php',
+        data: {fruit: val, condition: con, bagSize: siz, potSize: siz, length: x, width: y, height: z, quantity: qua},
+        success: function(data){
+        //alert(data);
+        }
+    });
+});
+});
 
 
-parseInt(x);
-parseInt(y);
-parseInt(z);
 
-var sum = x * y * z;
-
-document.getElementById("quantity1").value = sum; 
-
-}
-        
 </script>
 
 </body>

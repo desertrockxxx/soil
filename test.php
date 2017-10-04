@@ -49,3 +49,7 @@ if(isset($quantity)){
 }
 
 require_once("table.php");
+
+?>
+
+
