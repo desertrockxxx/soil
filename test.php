@@ -40,12 +40,21 @@ if(isset($quantity)){
         // prepare statement                                      
         $stmt = $conn->prepare("INSERT INTO `list` (`fruit`, `condition`, `bagSize`, `potSize`, `length`, `width`, `height`, `quantity`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute(array($fruit,$condition,$bagSize,$potSize,$length,$width,$height,$quantity)); 
-        
     } 
     catch (Exception $e) 
     {
         echo "Fehlercode: ". $e;
     }
+    
+    // Setze zurück
+    $fruit = "";
+    $condition = "";
+    $bagSize = "";
+    $potSize = "";
+    $length = 0;
+    $width = 0;
+    $height = 0;
+    $quantity = 0;
 }
 
 require_once("table.php");
