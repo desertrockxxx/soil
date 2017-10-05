@@ -9,6 +9,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/css/style.css" type="text/css" />
+  
+  <!--image picker-->
+  <link rel="stylesheet" href="/image-picker-master/image-picker/image-picker.css" type="text/css" />
+  <script src="/image-picker-master/image-picker/image-picker.js"></script>
+  
 </head>
 <body>
 
@@ -21,29 +26,33 @@
 <div class="row text-center submitajax">
   <button id="test">Test</button>
 </div>
-  
+
   
 <div class="container">
-    <!--if auswahl(x) then frucht = x -->
     <!--Auswahl  --> 
-    <div class="choicerow row ">
-    <h2 id="imgselect" class="text-center">Select breed</h2>
-        <img id="Pear" value="Pear" src="/img/pear.svg">
-        <img id="Strawberry" src="/img/strawberry.svg">
-        <img id="Mango" src="/img/mango.svg">
-        <img id="Orange" src="/img/orange.svg">
-        <img id="Grape" src="/img/grape.svg">
-        <img id="Apple" src="/img/apple.svg">
-        <img id="Watermelon" src="/img/watermelon.svg">
+    <div class="choicerow row text-center">
+    <h2 id="selectfruit" class="text-center">Select breed</h2>
+        <!--image picker -->
+        <select onchange="getFruit(this);"  class="image-picker show-html">
+            <option data-img-src="/img/pear.svg" data-img-alt="Pear"  data-img-class="first" value="Pear">Pear</option>
+            <option data-img-src="/img/strawberry.svg" data-img-alt="Strawberry"  value="Strawberry">Strawberry</option>
+            <option data-img-src="/img/mango.svg" data-img-alt="Mango"  value="Mango">Mango</option>
+            <option data-img-src="/img/orange.svg" data-img-alt="Orange"  value="Orange">Orange</option>
+            <option data-img-src="/img/grape.svg" data-img-alt="Grape"  value="Grape">Grape</option>
+            <option data-img-src="/img/apple.svg" data-img-alt="Apple"  value="Apple">Apple</option>
+            <option data-img-src="/img/watermelon.svg" data-img-alt="Watermelon" data-img-class="last" value="Watermelon">Watermelon</option>
+        </select>
     </div>
     <!--Auswahl Ende-->
 
+
     <div class="conditionsrow row text-center" style="height:760px">
+    <h2 id="selectcon" class="text-center" style="display:none">Select condition</h2>    
 
     <!---SACK OPTION-->
     <div class="col-sm-4 text-center" id="sack" style="display:none">
       <h2>Bag</h2>
-        <img class="img-responsive" width="100px" src="/img/bagnew.svg" width="4500px" alt="bag">
+        <img class="img-responsive" width="100px" src="/img/bagnew.svg" alt="bag">
           
         <div class="form-group">
           <label for="size">Size of Bag:</label>
@@ -114,7 +123,22 @@
 
 <script type="application/javascript">
 /*global $*/
-var val, con, siz, qua, x, y, z;
+var val, fru, con, siz, qua, x, y, z;
+
+
+// initialize imagepicker
+$("select").imagepicker({
+      hide_select : false,
+      show_label  : false
+})
+
+// Frucht
+function getFruit(sel){
+    fru = sel.value;
+    console.log(fru);
+    getCondition();
+}
+
 
 // Dimension
 function calculateQuantity() {
@@ -145,13 +169,11 @@ function getQuantity(sel)
     console.log(qua);
 }
 
-$(document).ready(function() {
-
-$("img").click(function() {
-    val = $(this).attr("id"); // fruit 1
-    con; // konditon 2
-        
-    switch(val){
+// Kondition
+function getCondition(){
+    $("#selectcon").show();
+    
+    switch(fru){
         case "Pear":
             con = 1;
             break;
@@ -178,6 +200,7 @@ $("img").click(function() {
             con = 0;
             break;
     }
+
     
     switch(con){
         case 1:
@@ -221,20 +244,22 @@ $("img").click(function() {
             $("#lose").hide();
             break;
     }
-});
+}
 
+// });
+// });
 
 $("#test").click(function(){
     $.ajax({
         type: "GET",
         url: 'test.php',
-        data: {fruit: val, condition: con, bagSize: siz, potSize: siz, length: x, width: y, height: z, quantity: qua},
+        data: {fruit: fru, condition: con, bagSize: siz, potSize: siz, length: x, width: y, height: z, quantity: qua},
         success: function(data){
         //alert(data);
         }
     });
 });
-});
+
 
 
 
