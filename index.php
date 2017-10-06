@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css" type="text/css" />
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
@@ -32,7 +33,7 @@
 <div class="container">
     <!--Auswahl  --> 
     <div class="row text-center">
-    <h3 id="selectfruit">Wähle Sie für welche Pflanze sie Erde benötigen</h3>
+    <h3 id="selectfruit">Wählen Sie für welche Pflanze Sie Erde benötigen.</h3>
         <!--image picker -->
         <select id="lol" onchange="getFruit(this);" class="image-picker show-html">
             <option data-img-src="/img/pear.svg" data-img-alt="Birne"  data-img-class="first" value="Birne">Birne</option>
@@ -48,7 +49,8 @@
 
 
     <div class="row text-center col-sm-12">
-    <h3 id="selectcon" style="display:none">Wählen Sie die gewünschte Menge an Pflanzenerde</h3>    
+    <h3 id="selectcon" style="display:none">Wählen Sie die Art und Menge an Pflanzenerde.</h3>
+    <p id="selp" style="display:none">Folgende Optionen stehen für die gewählte Pflanze zur Verfügung</p>
 
     <!---SACK OPTION-->
     <div class="col-sm-4 text-center" id="sack">
@@ -125,8 +127,11 @@
      </div>
 </div>
 
+
 <script type="application/javascript">
 /*global $*/
+
+
 var val, fru,condition, con, siz, qua, x, y, z, sum, location;
 
 
@@ -182,8 +187,8 @@ function getQuantity(sel)
 function showConditions(){
     // Zeige h3 Select conditions
     $("#selectcon").fadeTo("fast" , 1.0);
+    $("#selp").fadeTo("fast", 1.0);
 
-    
     switch(fru){
         case "Birne":
             condition = 1;
@@ -211,7 +216,7 @@ function showConditions(){
             condition = 0;
             break;
     }
-    selectedCondition();
+    getCondition();
     
     
     switch(condition){
@@ -256,11 +261,14 @@ function showConditions(){
             document.getElementById('lose').style.display = 'none';
             break;
     }
-    selectedCondition();
+    
+    $("html.body").scrollTop( 1000 );
+    
+    getCondition();
 }
 
 
-function selectedCondition(){
+function getCondition(){
     // Auswahl ein- und ausschalten
     if(fru == "Birne"){
         $("#sack").click(function() {
@@ -398,7 +406,12 @@ $("#test").click(function(){
             });
              alert(qua + " Kubikmeter von " +fru+  "-Pflanzenerde im Warenkorb!");
         }
+    } else if(fru != undefined){
+        alert("Bitte wählen Sie die gewünschte Menge");
+    } else {
+        alert("Bitte wählen Sie die Pflanzenerde und Menge")
     }
+    
     //Setze alles zurück
     
     location.reload(true);
