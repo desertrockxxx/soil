@@ -19,8 +19,8 @@
 <body>
 
 <div class="jumbotron text-center">
-  <h1>Selling modul</h1>
-  <p>This is a responsive selling modul for terratectum.de!</p> 
+  <h1>TerraTectum</h1>
+  <p>Erdauswahlmodul für das TerraTectum "Shopsystem"</p> 
 </div>
 
 <!--test-->
@@ -31,95 +31,98 @@
   
 <div class="container">
     <!--Auswahl  --> 
-    <div class="choicerow row text-center">
-    <h2 id="selectfruit">Select breed</h2>
+    <div class="row text-center">
+    <h3 id="selectfruit">Wähle Sie für welche Pflanze sie Erde benötigen</h3>
         <!--image picker -->
-        <select onchange="getFruit(this);" class="image-picker show-html">
-            <option data-img-src="/img/pear.svg" data-img-alt="Pear"  data-img-class="first" value="Pear">Pear</option>
-            <option data-img-src="/img/strawberry.svg" data-img-alt="Strawberry"  value="Strawberry">Strawberry</option>
+        <select id="lol" onchange="getFruit(this);" class="image-picker show-html">
+            <option data-img-src="/img/pear.svg" data-img-alt="Birne"  data-img-class="first" value="Birne">Birne</option>
+            <option data-img-src="/img/strawberry.svg" data-img-alt="Erdbeere" value="Erdbeere">Erdbeere</option>
             <option data-img-src="/img/mango.svg" data-img-alt="Mango"  value="Mango">Mango</option>
             <option data-img-src="/img/orange.svg" data-img-alt="Orange"  value="Orange">Orange</option>
-            <option data-img-src="/img/grape.svg" data-img-alt="Grape"  value="Grape">Grape</option>
-            <option data-img-src="/img/apple.svg" data-img-alt="Apple"  value="Apple">Apple</option>
-            <option data-img-src="/img/watermelon.svg" data-img-alt="Watermelon" data-img-class="last" value="Watermelon">Watermelon</option>
+            <option data-img-src="/img/grape.svg" data-img-alt="Weintraube"  value="Weintraube">Weintraube</option>
+            <option data-img-src="/img/apple.svg" data-img-alt="Apfel"  value="Apfel">Apfel</option>
+            <option data-img-src="/img/watermelon.svg" data-img-alt="Wassermelone" data-img-class="last" value="Wassermelone">Wassermelone</option>
         </select>
     </div>
     <!--Auswahl Ende-->
 
 
-    <div class="conditionsrow row text-center" style="height:760px">
-    <h2 id="selectcon" style="display:none">Select condition</h2>    
+    <div class="row text-center col-sm-12">
+    <h3 id="selectcon" style="display:none">Wählen Sie die gewünschte Menge an Pflanzenerde</h3>    
 
     <!---SACK OPTION-->
-    <div class="col-sm-4 text-center" id="sack" style="display:none">
-      <h2>Bag</h2>
+    <div class="col-sm-4 text-center" id="sack">
+      <h3>Sack</h3>
+      <p>Für große Flächen</p>
         <img class="img-responsive" width="100px" src="/img/bagnew.svg" alt="bag">
           
         <div class="form-group">
-          <label for="size">Size of Bag:</label>
+          <label for="size">Größenangabe:</label>
           <select class="form-control" onchange="getSize(this);" id="bagSize">
-            <option>S (2 litre)</option>
-            <option>M (5 litre)</option>
-            <option>L (10 litre)</option>
-            <option>XL (25 litre)</option>
+            <option>S (2 Liter)</option>
+            <option>M (5 Liter)</option>
+            <option>L (10 Liter)</option>
+            <option>XL (25 Liter)</option>
           </select>
         </div>
         
         <div class="form-group">
-          <label for="quantity">How many?</label>
-          <input type="number" class="form-control" onchange="getQuantity(this);" id="quantity" placeholder="Enter quantity">
+          <label for="quantity">Wieviele Säcke?</label>
+          <input type="number" class="form-control" onchange="getQuantity(this);" min="1" id="quantity" placeholder="Enter quantity">
         </div>
     </div>
     <!---SACK OPTION ENDE-->
     
-    <!---TOPF OPTION-->
-    <div class="col-sm-4 text-center" id="topf" style="display:none">
-      <h2>Pot</h2>
-        <img class="img-responsive" width="100px" src="/img/potnew.svg" alt="pot">  
-
-        <div class="form-group">
-          <label for="size">Size of Pot:</label>
-          <select class="form-control" onchange="getSize(this);"  id="potSize">
-            <option>S (2 litre)</option>
-            <option>M (5 litre)</option>
-            <option>L (10 litre)</option>
-            <option>XL (25 litre)</option>
-          </select>
-        </div>
-        
-        <label for="quantity">How many?</label>
-        <div class="form-group">
-          <input type="number" class="form-control" onchange="getQuantity(this);" id="quantity" placeholder="Enter quantity">
-        </div>
-    </div>
-     <!---TOPF OPTION ENDE-->
-    
     <!---LOSE OPTION-->
-    <div class="col-sm-4 text-center" id="lose" style="display:none">
-      <h2>Dynamic</h2>
+    <div class="col-sm-4 text-center" id="lose">
+      <h3>Lose Erde</h3>
+      <p>Ab 1 Kubikmeter Erde</p>
         <div class="text-center">
             <img class="img-responsive" width="100px" src="/img/cubenew.svg" alt="cube">
         </div> 
         <div class="form-group">
-            <label for="x">Length:</label>
+            <label for="x">Länge:</label>
             <input type="number" class="form-control" onchange="calculateQuantity();" id="x" min="1" max="100" value="1"/>
         </div>
         <div class="form-group">
-            <label for="y">Width:</label>
+            <label for="y">Breite:</label>
             <input type="number" class="form-control" onchange="calculateQuantity();" id="y" min="1" max="100" value="1"/>
         </div>
         <div class="form-group">
-            <label for="z">Height:</label>
+            <label for="z">Höhe:</label>
             <input type="number" class="form-control" onchange="calculateQuantity();" id="z" min="1" max="100" value="1"/>
         </div>
         <div class="form-group">
-          <label for="quantity">How much?</label>
-          <input type="number" class="form-control" id="dimensionsum" placeholder="Enter quantity">
+          <label for="quantity">Wieviel Kubikmeter?</label>
+          <input type="number" class="form-control" id="dimensionsum" min="1" placeholder="Enter quantity">
         </div>
     </div>
      <!---LOSE OPTION ENDE-->
-  </div>
-  
+
+    <!---TOPF OPTION-->
+    <div class="col-sm-4 text-center" id="topf">
+      <h3>Topf</h3>
+      <p>Für z.B. Balkone</p>
+        <img class="img-responsive" width="100px" src="/img/potnew.svg" alt="pot">  
+
+        <div class="form-group">
+          <label for="size">Größenangabe:</label>
+          <select class="form-control" onchange="getSize(this);"  id="potSize">
+            <option>S (2 Liter)</option>
+            <option>M (5 Liter)</option>
+            <option>L (10 Liter)</option>
+            <option>XL (25 Liter)</option>
+          </select>
+        </div>
+        
+        <label for="quantity">Wieviele Töpfe?</label>
+        <div class="form-group">
+          <input type="number" class="form-control" onchange="getQuantity(this);" id="quantity" min="1" placeholder="Enter quantity">
+        </div>
+    </div>
+     <!---TOPF OPTION ENDE-->
+     
+     </div>
 </div>
 
 <script type="application/javascript">
@@ -128,10 +131,14 @@ var val, fru,condition, con, siz, qua, x, y, z, sum, location;
 
 
 // initialize imagepicker
-$("select").imagepicker({
-      hide_select : false,
-      show_label  : false
+$("select#lol").imagepicker({
+      hide_select : true,
+      show_label  : true
 })
+
+document.getElementById('topf').style.display = 'none';
+document.getElementById('sack').style.display = 'none';
+document.getElementById('lose').style.display = 'none';
 
 // Frucht
 function getFruit(sel){
@@ -173,14 +180,15 @@ function getQuantity(sel)
 
 // Zeige Kondition
 function showConditions(){
-    // Zeige h2 Select conditions
+    // Zeige h3 Select conditions
     $("#selectcon").fadeTo("fast" , 1.0);
 
+    
     switch(fru){
-        case "Pear":
+        case "Birne":
             condition = 1;
             break;
-        case "Strawberry":
+        case "Erdbeere":
             condition = 2;
             break;
         case "Mango":
@@ -189,13 +197,13 @@ function showConditions(){
         case "Orange":
             condition = 4;
             break;
-        case "Grape":
+        case "Weintraube":
             condition = 5;
             break;
-        case "Apple":
+        case "Apfel":
             condition = 6;
             break;
-        case "Watermelon":
+        case "Wassermelone":
             condition = 7;
             break;    
         
@@ -203,7 +211,8 @@ function showConditions(){
             condition = 0;
             break;
     }
-    showOpacity();
+    selectedCondition();
+    
     
     switch(condition){
         case 1:
@@ -247,13 +256,13 @@ function showConditions(){
             document.getElementById('lose').style.display = 'none';
             break;
     }
-    showOpacity();
+    selectedCondition();
 }
 
 
-function showOpacity(){
+function selectedCondition(){
     // Auswahl ein- und ausschalten
-    if(fru == "Pear"){
+    if(fru == "Birne"){
         $("#sack").click(function() {
             $("#sack").fadeTo("fast" , 1.0);
             document.getElementById('topf').style.display = 'none';
@@ -262,7 +271,7 @@ function showOpacity(){
         });
     }
 
-    if(fru == "Strawberry"){
+    if(fru == "Erdbeere"){
         $("#topf").click(function() {
             $("#topf").fadeTo("fast" , 1.0);
             document.getElementById('sack').style.display = 'none';
@@ -285,71 +294,71 @@ function showOpacity(){
     if(fru == "Orange"){
         $("#lose").click(function() {
             $("#lose").fadeTo("fast" , 1.0);
-            $("#topf").fadeTo("fast" , 0.5);
+            $("#topf").show()
             document.getElementById('sack').style.display = 'none';
             con = "lose";
         });
         
         $("#topf").click(function() {
             $("#topf").fadeTo("fast" , 1.0);
-            $("#lose").fadeTo("fast" , 0.5);
+            $("#lose").show()
             document.getElementById('sack').style.display = 'none';
             con = "topf";
         });
     }
     
-    if(fru == "Grape"){
+    if(fru == "Weintraube"){
         $("#lose").click(function() {
             $("#lose").fadeTo("fast" , 1.0);
-            $("#sack").fadeTo("fast" , 0.5);
+            $("#sack").show()
             document.getElementById('topf').style.display = 'none';
             con = "lose";
         });
         
         $("#sack").click(function() {
             $("#sack").fadeTo("fast" , 1.0);
-            $("#lose").fadeTo("fast" , 0.5);
+            $("#lose").show()
             document.getElementById('topf').style.display = 'none';
             con = "sack";
         });
     }
     
-    if(fru == "Apple"){
+    if(fru == "Apfel"){
         $("#sack").click(function() {
             $("#sack").fadeTo("fast" , 1.0);
-            $("#topf").fadeTo("fast" , 0.5);
+            $("#topf").show()
             document.getElementById('lose').style.display = 'none';
             con = "sack";
         });
         
         $("#topf").click(function() {
             $("#topf").fadeTo("fast" , 1.0);
-            $("#sack").fadeTo("fast" , 0.5);
+            $("#sack").show()
             document.getElementById('lose').style.display = 'none';
             con = "topf";
         });
     }
     
     
-    if(fru == "Watermelon"){
+    if(fru == "Wassermelone"){
         $("#sack").click(function() {
             $("#sack").fadeTo("fast" , 1.0);
-            $("#topf").fadeTo("fast" , 0.5);
-            $("#lose").fadeTo("fast" , 0.5);
+            $("#topf").show()
+            $("#lose").show()
             con = "sack";
         });
         
         $("#topf").click(function() {
             $("#topf").fadeTo("fast" , 1.0);
-            $("#sack").fadeTo("fast" , 0.5);
-            $("#lose").fadeTo("fast" , 0.5);
+            $("#sack").show()
+            $("#lose").show()
             con = "topf";
         });
         
         $("#lose").click(function() {
             $("#lose").fadeTo("fast" , 1.0);
-            $("#topf").fadeTo("fast" , 0.5);
-            $("#sack").fadeTo("fast" , 0.5);
+            $("#topf").show()
+            $("#sack").show()
             con = "lose";
         });
     }
@@ -366,33 +375,28 @@ $("#test").click(function(){
             $.ajax({
                 type: "GET",
                 url: 'test.php',
-                data: {fruit: fru, condition: con, bagSize: siz, quantity: qua},
-                success: function(data){
-                //alert(data);
-                }
+                data: {fruit: fru, condition: con, bagSize: siz, quantity: qua}
             });
+            alert(qua + " Säcke à " + siz + " von " + fru + "-Pflanzenerde im Warenkorb!");
+            
         }
         
         if(con == "topf"){
             $.ajax({
                 type: "GET",
                 url: 'test.php',
-                data: {fruit: fru, condition: con, potSize: siz, quantity: qua},
-                success: function(data){
-                //alert(data);
-                }
+                data: {fruit: fru, condition: con, potSize: siz, quantity: qua}
             });
+            alert(qua + " Töpfe à " + siz + " von " + fru + "-Pflanzenerde im Warenkorb!");
         }
         
         if(con == "lose"){
             $.ajax({
                 type: "GET",
                 url: 'test.php',
-                data: {fruit: fru, condition: con, length: x, width: y, height: z, quantity: qua},
-                success: function(data){
-                //alert(data);
-                }
+                data: {fruit: fru, condition: con, length: x, width: y, height: z, quantity: qua}
             });
+             alert(qua + " Kubikmeter von " +fru+  "-Pflanzenerde im Warenkorb!");
         }
     }
     //Setze alles zurück

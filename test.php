@@ -55,6 +55,8 @@ if(isset($quantity)){
     $width = 0;
     $height = 0;
     $quantity = 0;
+    
+    echo "lol";
 }
 
 require_once("table.php");
