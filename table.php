@@ -1,6 +1,7 @@
 <?php
+require_once("dbconfig.php"); // 5.12.17 21:15
 
-echo "<table style='border: solid 1px black;'>";
+echo "<div class='row'><div class='col-sm-offset-3 col-sm-6 center'><table>";
 echo "<tr><th>Fruit</th><th>Condition</th><th>BagSize</th><th>PotSize</th><th>Length</th><th>Width</th><th>Height</th><th>Quantity</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator { 
@@ -9,7 +10,7 @@ class TableRows extends RecursiveIteratorIterator {
     }
 
     function current() {
-        return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
+        return "<td>" . parent::current(). "</td>";
     }
 
     function beginChildren() { 
@@ -37,7 +38,7 @@ catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 $conn = null;
-echo "</table>";
+echo "</table></div></div>";
 
 ?>
 

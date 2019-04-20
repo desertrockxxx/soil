@@ -10,8 +10,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  
+
   <!--image picker-->
   <link rel="stylesheet" href="/image-picker-master/image-picker/image-picker.css" type="text/css" />
   <script src="/image-picker-master/image-picker/image-picker.js"></script>
@@ -20,22 +19,16 @@
 <body>
 
 <div class="jumbotron text-center">
-  <h1>TerraTectum</h1>
-  <p>Erdauswahlmodul für das TerraTectum "Shopsystem"</p> 
+  <div class="enjoy-css"><b>TerraTectum</b></div>
+  <div class="fun-with-css">Erdauswahlmodul für das TerraTectum "Shopsystem"</div> 
 </div>
-
-<!--test-->
-<div class="row text-center submitajax">
-  <button type="button" class="btn" id="test">Test</button>
-</div>
-
   
-<div class="container">
+<div class="container text-center">
     <!--Auswahl  --> 
-    <div class="row text-center">
+    <div class="row text-center choicerow" style="display: table; margin: 0 auto;">
     <h3 id="selectfruit">Wählen Sie für welche Pflanze Sie Erde benötigen.</h3>
         <!--image picker -->
-        <select id="lol" onchange="getFruit(this);" class="image-picker show-html">
+        <select id="lol" onchange="getFruit(this); " class="image-picker show-html">
             <option data-img-src="/img/pear.svg" data-img-alt="Birne"  data-img-class="first" value="Birne">Birne</option>
             <option data-img-src="/img/strawberry.svg" data-img-alt="Erdbeere" value="Erdbeere">Erdbeere</option>
             <option data-img-src="/img/mango.svg" data-img-alt="Mango"  value="Mango">Mango</option>
@@ -48,15 +41,15 @@
     <!--Auswahl Ende-->
 
 
-    <div class="row text-center col-sm-12">
-    <h3 id="selectcon" style="display:none">Wählen Sie die Art und Menge an Pflanzenerde.</h3>
+    <div class="row text-center col-sm-12 selectrow">
+    <h3 id="selectcon" style="display:none"></h3>
     <p id="selp" style="display:none">Folgende Optionen stehen für die gewählte Pflanze zur Verfügung</p>
 
     <!---SACK OPTION-->
     <div class="col-sm-4 text-center" id="sack">
       <h3>Sack</h3>
       <p>Für große Flächen</p>
-        <img class="img-responsive" width="100px" src="/img/bagnew.svg" alt="bag">
+        <img class="img-responsive" width="100px" src="/img/sack.png" alt="bag">
           
         <div class="form-group">
           <label for="size">Größenangabe:</label>
@@ -80,7 +73,7 @@
       <h3>Lose Erde</h3>
       <p>Ab 1 Kubikmeter Erde</p>
         <div class="text-center">
-            <img class="img-responsive" width="100px" src="/img/cubenew.svg" alt="cube">
+            <img class="img-responsive" width="100px" src="/img/cube.png" alt="cube">
         </div> 
         <div class="form-group">
             <label for="x">Länge:</label>
@@ -96,7 +89,7 @@
         </div>
         <div class="form-group">
           <label for="quantity">Wieviel Kubikmeter?</label>
-          <input type="number" class="form-control" id="dimensionsum" min="1" placeholder="Enter quantity">
+          <input type="number" class="form-control" onchange="getQuantity(this);" id="dimensionsum" min="1" placeholder="Enter quantity">
         </div>
     </div>
      <!---LOSE OPTION ENDE-->
@@ -105,7 +98,7 @@
     <div class="col-sm-4 text-center" id="topf">
       <h3>Topf</h3>
       <p>Für z.B. Balkone</p>
-        <img class="img-responsive" width="100px" src="/img/potnew.svg" alt="pot">  
+        <img class="img-responsive" width="100px" src="/img/topf.png" alt="pot">  
 
         <div class="form-group">
           <label for="size">Größenangabe:</label>
@@ -127,9 +120,22 @@
      </div>
 </div>
 
+<!--test-->
+<div class="row text-center submitajax">
+  <button type="button" class="btn" id="test">Bestätigen</button>
+</div>
+
 
 <script type="application/javascript">
 /*global $*/
+
+// test
+function alert_fn(){
+    $.get('https://soil-markschuster.c9users.io/lol.txt', function(data) {
+       alert(data);
+    });   
+}
+
 
 
 var val, fru,condition, con, siz, qua, x, y, z, sum, location;
@@ -140,7 +146,7 @@ $("select#lol").imagepicker({
       hide_select : true,
       show_label  : true
 })
-
+// jeweilige sektion nur anzeigen, wenn nötig
 document.getElementById('topf').style.display = 'none';
 document.getElementById('sack').style.display = 'none';
 document.getElementById('lose').style.display = 'none';
@@ -224,36 +230,43 @@ function showConditions(){
             $("#sack").fadeTo("fast" , 1.0);
             document.getElementById('topf').style.display = 'none';
             document.getElementById('lose').style.display = 'none';
+            $("#selectcon").text("Wählen Sie die Menge an Pflanzenerde.") 
             break;
         case 2:
             document.getElementById('sack').style.display = 'none';
             $("#topf").fadeTo("fast" , 1.0);
             document.getElementById('lose').style.display = 'none';
+             $("#selectcon").text("Wählen Sie die Menge an Pflanzenerde.")
             break;
         case 3:
             document.getElementById('sack').style.display = 'none';
             document.getElementById('topf').style.display = 'none';
             $("#lose").fadeTo("fast" , 1.0);
+            $("#selectcon").text("Wählen Sie die Menge an Pflanzenerde.")
             break;
         case 4:
             document.getElementById('sack').style.display = 'none';
             $("#topf").fadeTo("fast" , 1.0);
             $("#lose").fadeTo("fast" , 1.0);
+            $("#selectcon").text("Wählen Sie die Menge und Art an Pflanzenerde.")
             break;
         case 5:
             $("#sack").fadeTo("fast" , 1.0);
             document.getElementById('topf').style.display = 'none';
             $("#lose").fadeTo("fast" , 1.0);
+            $("#selectcon").text("Wählen Sie die Menge und Art an Pflanzenerde.")
             break;
         case 6:
             $("#sack").fadeTo("fast" , 1.0);
             $("#topf").fadeTo("fast" , 1.0);
             document.getElementById('lose').style.display = 'none';
+            $("#selectcon").text("Wählen Sie die Menge und Art an Pflanzenerde.")
             break;
         case 7:
             $("#sack").fadeTo("fast" , 1.0);
             $("#topf").fadeTo("fast" , 1.0);
             $("#lose").fadeTo("fast" , 1.0);
+            $("#selectcon").text("Wählen Sie die Menge und Art an Pflanzenerde.")
             break;    
         default:
             document.getElementById('sack').style.display = 'none';
@@ -270,6 +283,10 @@ function showConditions(){
 
 function getCondition(){
     // Auswahl ein- und ausschalten
+    
+    
+    
+    
     if(fru == "Birne"){
         $("#sack").click(function() {
             $("#sack").fadeTo("fast" , 1.0);
@@ -372,11 +389,8 @@ function getCondition(){
     }
 }
 
-// if click condition bild all other opacity -1
 
-// con = selection
-
-
+// In die Datenbank 
 $("#test").click(function(){
     if(qua != undefined && fru != undefined){
         if(con == "sack"){
@@ -421,6 +435,8 @@ $("#test").click(function(){
 
 
 </script>
+
+<?php require_once("table.php");?>
 
 </body>
 </html>

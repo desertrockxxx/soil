@@ -3,24 +3,18 @@
 
 require_once("dbconfig.php");
 
-$fruit = "";
-$condition = "";
-$bagSize = "";
-$potSize = "";
-$length = 0;
-$width = 0;
-$height = 0;
-$quantity = 0;
+$fruit = $condition = $bagSize = $potSize = "";
+$length = $width = $height = $quantity = 0;
 
 
-$fruit = $_REQUEST["fruit"];
-$condition = $_REQUEST["condition"];
-$bagSize = $_REQUEST["bagSize"];
-$potSize = $_REQUEST["potSize"];
-$length = intval($_REQUEST["length"]);
-$width = intval($_REQUEST["width"]);
-$height = intval($_REQUEST["height"]);
-$quantity = intval($_REQUEST["quantity"]);
+$fruit = $_GET["fruit"];
+$condition = $_GET["condition"];
+$bagSize = $_GET["bagSize"];
+$potSize = $_GET["potSize"];
+$length = intval($_GET["length"]);
+$width = intval($_GET["width"]);
+$height = intval($_GET["height"]);
+$quantity = intval($_GET["quantity"]);
 
 
 
@@ -47,16 +41,9 @@ if(isset($quantity)){
     }
     
     // Setze zurück
-    $fruit = "";
-    $condition = "";
-    $bagSize = "";
-    $potSize = "";
-    $length = 0;
-    $width = 0;
-    $height = 0;
-    $quantity = 0;
-    
-    echo "lol";
+    $fruit = $condition = $bagSize = $potSize = "";
+    $length = $width = $height = $quantity = 0;
+
 }
 
 require_once("table.php");
